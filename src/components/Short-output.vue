@@ -1,26 +1,36 @@
 <template>
-  <div class="output">
-    <div class="result">
-      <p class="link">https://www.google.com/search?q</p>
-      <p class="shorten">https://www.google.com</p>
-      <button id="copy">Copy</button>
+  <transition-group name="movin" class="output" tag="div">
+    <div
+      v-for="dataResulted in dataResult"
+      :key="dataResulted.original_link"
+      class="result"
+    >
+      <p class="link">{{ dataResulted.original_link }}</p>
+      <p class="shorten">{{ dataResulted.full_short_link }}</p>
+      <button
+        v-if="this.copyed === 'copy'"
+        @click="this.copyed = 'copied'"
+        id="copy"
+        :class="copyed"
+      >
+        Copy
+      </button>
+      <button v-else @click="this.copyed = 'copied'" id="copy" :class="copyed">
+        Copied!
+      </button>
     </div>
-    <div class="result">
-      <p class="link">https://www.google.com/search?q</p>
-      <p class="shorten">https://www.google.com</p>
-      <button id="copy" class="copied">Copied!</button>
-    </div>
-    <div class="result">
-      <p class="link">https://www.google.com/search?q</p>
-      <p class="shorten">https://www.google.com</p>
-      <button id="copy">Copy</button>
-    </div>
-  </div>
+  </transition-group>
 </template>
 
 <script>
 export default {
   name: "ShortOutput",
+  data() {
+    return {
+      copyed: "copy",
+    };
+  },
+  props: ["dataResult"],
 };
 </script>
 
@@ -73,5 +83,17 @@ export default {
     text-align: end;
     flex: 1;
   }
+}
+.movin-enter-from,
+.movin-leave-from {
+  transform: rotatex(90deg);
+  opacity: 0;
+}
+.movin-enter-active,
+.movin-leave-active {
+  transition: all 0.5s ease;
+}
+.movin-move {
+  transition: all 0.5s ease;
 }
 </style>

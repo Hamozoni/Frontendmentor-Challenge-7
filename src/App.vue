@@ -26,7 +26,6 @@ export default {
   --gray: hsl(0, 0%, 75%);
   --grayish-violet: hsl(257, 7%, 63%);
   --very-dark-blue: hsl(255, 11%, 22%);
-  --very-dark-violet: hsl(260, 8%, 14%);
   --bg-gray: hsl(225deg 33% 95%);
   --font-size: 18px;
 }

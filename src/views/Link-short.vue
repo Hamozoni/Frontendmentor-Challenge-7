@@ -2,7 +2,6 @@
   <div class="link-shorten">
     <div class="container">
       <shorten-comp />
-      <short-output />
       <advanced-sta />
     </div>
   </div>
@@ -10,11 +9,10 @@
 
 <script>
 import ShortenComp from "@/components/ShortenComp.vue";
-import ShortOutput from "@/components/Short-output.vue";
 import AdvancedSta from "@/components/AdvancedSta.vue";
 export default {
   name: "LinkShort",
-  components: { ShortenComp, ShortOutput, AdvancedSta },
+  components: { ShortenComp, AdvancedSta },
 };
 </script>
 

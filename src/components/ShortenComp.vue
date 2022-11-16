@@ -1,13 +1,49 @@
 <template>
   <div class="input">
-    <input type="text" id="shortLink" placeholder="Shorten a link here..." />
-    <button id="shortBtn">Shorten it!</button>
+    <input
+      v-model="linkInPut"
+      type="text"
+      id="shortLink"
+      :class="emty && 'emty'"
+      placeholder="Shorten a Link Here..."
+    />
+    <label v-if="emty" for="shortLink">please add a link</label>
+    <button @click="fecthing" id="shortBtn">Shorten it!</button>
   </div>
+  <transition name="apear">
+    <short-output v-if="resuShow" :dataResult="resu" />
+  </transition>
 </template>
 
 <script>
+import ShortOutput from "@/components/Short-output.vue";
 export default {
   name: "ShortenComp",
+  components: { ShortOutput },
+  data() {
+    return {
+      resu: [],
+      linkInPut: "",
+      resuShow: false,
+      emty: false,
+    };
+  },
+  methods: {
+    fecthing() {
+      if (this.linkInPut) {
+        fetch(`https://api.shrtco.de/v2/shorten?url=${this.linkInPut}`)
+          .then((respounse) => respounse.json())
+          .then((data) => {
+            this.resu.unshift(data.result);
+            this.resuShow = true;
+            this.emty = false;
+          });
+        this.linkInPut = "";
+      } else {
+        this.emty = true;
+      }
+    },
+  },
 };
 </script>
 
@@ -28,6 +64,12 @@ export default {
   border-radius: 10px;
   width: 100%;
 }
+.input #shortLink.emty {
+  border: 2px solid red;
+}
+.input #shortLink.emty::placeholder {
+  color: red;
+}
 .input #shortBtn {
   width: 100%;
   padding: 17px 0;
@@ -35,6 +77,12 @@ export default {
   color: #fff;
   border-radius: 10px;
   margin-top: 30px;
+}
+.input label {
+  position: absolute;
+  left: 50px;
+  top: 105px;
+  color: red;
 }
 @media (min-width: 768px) {
   .input {
@@ -51,5 +99,14 @@ export default {
     width: calc(20% - 15px);
     margin-top: 0;
   }
+}
+.apear-enter-from,
+.apear-leave-from {
+  transform: rotatex(90deg);
+  opacity: 0;
+}
+.apear-enter-active,
+.apear-leave-active {
+  transition: all 0.5s ease;
 }
 </style>
