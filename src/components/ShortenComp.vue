@@ -54,7 +54,7 @@ export default {
   width: 100%;
   padding: 40px;
   background-image: url(@/assets/bg-shorten-desktop.svg);
-  background-color: var(--very-dark-blue);
+  background-color: var(--dark-violet);
   background-size: cover;
   border-radius: 10px;
   margin-bottom: -70px;
