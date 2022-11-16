@@ -63,7 +63,7 @@ export default {
 
 <style>
 footer {
-  background-color: #3b3054;
+  background-color: #35323e;
 }
 footer .container {
   text-align: center;
