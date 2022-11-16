@@ -14,7 +14,7 @@ export default {
 <style>
 .boost {
   text-align: center;
-  background-color: var(--very-dark-blue);
+  background-color: var(--dark-violet);
   background-image: url(@/assets/bg-boost-desktop.svg);
   background-position: center;
   padding: 50px 20px;
