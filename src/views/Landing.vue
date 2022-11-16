@@ -69,7 +69,7 @@ export default {
   }
   .container .left .lan-head {
     line-height: 1.2;
-    font-size: 60px;
+    font-size: 53px;
   }
   .container .left .lan-pra {
     width: 85%;
